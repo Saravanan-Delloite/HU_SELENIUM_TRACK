@@ -1,12 +1,16 @@
 import net.jodah.failsafe.internal.util.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 //import org.testng
 
-public class mini {
+public class main {
     public static void main(String[] args) throws Exception{
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\ksaravanakumar\\Documents\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver ;
+        ChromeOptions options= new ChromeOptions();
+        options.addArguments("headless");
+        driver =new ChromeDriver(options);
         driver.get("https://phptravels.com/demo");
         driver.manage().window().maximize();
         String title = driver.getTitle();
