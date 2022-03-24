@@ -16,7 +16,7 @@ public class Main
         nested.click();
         driver.switchTo().frame("frame-top");
         driver.switchTo().frame("frame-left");
-        String title = driver.getTitle();
-              System.out.print(title);
+        driver.findElement(By.cssSelector("body")).getText();
+              System.out.print("The frame title is"+title);
     }
 }
