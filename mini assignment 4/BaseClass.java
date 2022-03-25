@@ -16,7 +16,7 @@ public class BaseClass
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\ksaravanakumar\\Documents\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("http://www.saucedemo.com/");
-        //Thread.sleep(1000);
+        Thread.sleep(1000);
         driver.manage().window().maximize();
         return null;
     }
@@ -47,7 +47,6 @@ public class BaseClass
         button.click();
         return null;
     }
-    //add-to-cart-sauce-labs-fleece-jacket
     public static WebDriver selectingitem() throws Exception
     {
         WebElement filter = driver.findElement(By.xpath("//select"));
@@ -58,9 +57,7 @@ public class BaseClass
         Thread.sleep(1000);
         try {
             driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket")).click();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("The button is not clickable");
         }
         driver.findElement(By.xpath("//button[text()='Remove']")).click();
@@ -69,8 +66,27 @@ public class BaseClass
         Thread.sleep(1000);
         driver.findElement(By.className("shopping_cart_link")).click();
         Thread.sleep(1000);
+        return null;
+    }
+    public static WebDriver checkingPrice() throws Exception{
+        String price1=driver.findElement(By.xpath("(//div[@class='inventory_item_price'])")).getText();
+        price1=price1.substring(1);
         driver.findElement(By.id("continue-shopping")).click();
         Thread.sleep(1000);
+        float count1=Float.parseFloat(price1);
+        if(count1<=100)
+        {
+            System.out.println("The most expensive product is less than or equal $100");
+        }
+        else
+        {
+            System.out.println("The most expensive product is greater than $100");
+            driver.close();
+        }
+        return null;
+    }
+    public static WebDriver addingLeastExpensive()throws Exception
+    {
         String number= driver.findElement(By.className("shopping_cart_badge")).getText();
         int count=Integer.parseInt(number);
         driver.findElement(By.xpath("//select")).click();
@@ -153,6 +169,11 @@ public class BaseClass
         {
             System.out.print("The success message is verified");
         }
+        return null;
+    }
+    public static WebDriver exit() throws  Exception
+    {
+        driver.close();
         return null;
     }
 }
