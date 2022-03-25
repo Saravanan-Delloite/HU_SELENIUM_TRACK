@@ -10,7 +10,6 @@ import java.io.*;
 public class BaseClass
 {
     static WebDriver driver;
-
     public static WebDriver initialSetup() throws Exception
     {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\ksaravanakumar\\Documents\\chromedriver.exe");
@@ -33,14 +32,18 @@ public class BaseClass
             String[] employee = line.split(splitBy);
             User=employee[0];
             PassWord=employee[1];
-        }*/
+        }
+         */
         String User="standard_user";
         String PassWord="secret_sauce";
+        //driver.findElement(By.xpath()).clear()
         WebElement Id = driver.findElement(By.id("user-name"));
+        driver.findElement(By.id("user-name")).clear();
         Id.sendKeys(User);
-        //System.out.print(User+"-"+"-"+PassWord);
+        System.out.print(PassWord);
 
         WebElement Pass = driver.findElement(By.id("password"));
+        driver.findElement(By.id("password")).clear();
         Pass.sendKeys(PassWord);
         Thread.sleep(3000);
         WebElement button = driver.findElement(By.id("login-button"));
@@ -167,7 +170,7 @@ public class BaseClass
         String message=driver.findElement(By.className("complete-header")).getText();
         if(message.equals(verification_msg))
         {
-            System.out.print("The success message is verified");
+            System.out.println("The success message is verified");
         }
         return null;
     }
